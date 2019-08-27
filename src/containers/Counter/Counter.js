@@ -6,41 +6,40 @@ import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
 class Counter extends Component {
     state = {
-      // counter: 0,
-      // value: 5,
-      // results: [],
     }
-
-    // counterChangedHandler = ( action, value ) => {
-    //     switch ( action ) {
-    //         case 'inc':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter + 1 } } )
-    //             break;
-    //         case 'dec':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter - 1 } } )
-    //             break;
-    //         case 'add':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter + value } } )
-    //             break;
-    //         case 'sub':
-    //             this.setState( ( prevState ) => { return { counter: prevState.counter - value } } )
-    //             break;
-    //     }
-    // }
-
     render () {
         return (
             <div>
-                <p>Old Counter:</p>
+              <p>Old Counter:</p>
               <CounterOutput value={this.state.counter} />
               <p>New Counter:</p>
 
+                <div>
+                  <form onSubmit ={(e)=> this.props.onSubmitInputChange(this.refs.diffInput.value,e)}>
+
+                  <label htmlFor="">Diff: </label>
+                      <input type="text"
+                             placeholder="Enter the diff value here"
+                             ref="diffInput"
+                             onChange={e => {
+                               this.props.onInputChange(e.target.value)
+                             }}
+                      />
+                    <input type="submit" value="Submit Diff" />
+              </form>
+            </div>
               <CounterOutput value={this.props.ctr} />
 
-                <CounterControl label="Increment" clicked={ this.props.onIncrementCounter } />
-                <CounterControl label="Decrement" clicked={ this.props.onDecrementCounter}  />
-                <CounterControl label="Add 5" clicked={ () =>this.props.onAddCounter(this.props.counterValue)} />
-                <CounterControl label="Subtract 5" clicked={ () =>this.props.onSubtractCounter(this.props.counterValue)}  />
+                <CounterControl label="Increment"
+                                clicked={ this.props.onIncrementCounter } />
+                <CounterControl label="Decrement"
+                                clicked={ this.props.onDecrementCounter}  />
+                <CounterControl label="Add "
+                                val = {this.props.counterValue}
+                                clicked={ () =>this.props.onAddCounter(this.props.counterValue)} />
+                <CounterControl label="Subtract "
+                                val = {this.props.counterValue}
+                                clicked={ () =>this.props.onSubtractCounter(this.props.counterValue)}  />
                 <div>
                   <button onClick={() => this.props.onStoreResult(this.props.ctr)}>Store Result</button>
                   <ul>
@@ -69,7 +68,14 @@ const mapDispatchToProps = dispatch => {
     onAddCounter: (counterValue) => dispatch({type: 'ADD', val: counterValue}),
     onSubtractCounter: (counterValue) => dispatch({type: 'SUBTRACT', val: counterValue}),
     onStoreResult: () => dispatch({type: 'STORE_RESULT'}),
-    onDeleteResult: (id) => dispatch({type: 'DELETE_RESULT', resultElId: id})
+    onDeleteResult: (id) => dispatch({type: 'DELETE_RESULT', resultElId: id}),
+    onInputChange: (inputValue) => dispatch({type:'DIFF_CHANGE', diffInput: inputValue }),
+    onSubmitInputChange: (submitValue,submitEvent) => dispatch(
+      {
+        type:'DIFF_SUBMIT',
+        diffSubmit: submitValue,
+        eventSubmit: submitEvent
+      })
   };
 };
 

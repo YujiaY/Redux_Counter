@@ -20,10 +20,12 @@ const reducer = (state = initialState, action) => {
         return {
           ...state, counter: state.counter + action.val
         };
-      case 'SUBTRACT':
+      case 'SUBTRACT':{
+        console.log('Subtracting...')
         return {
           ...state, counter: state.counter - action.val
         };
+      }
       case 'STORE_RESULT':
         {
           console.log(`Storing result... ${state.counter}`);
@@ -44,7 +46,26 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           results : updatedArray
-        }}
+        }};
+      case 'DIFF_CHANGE': {
+        console.log('Input is changing diff...');
+        return {
+          ...state,
+          // value : +action.diffInput
+        }
+      };
+      case 'DIFF_SUBMIT':
+      {
+        action.eventSubmit.preventDefault();
+        console.log('Submitting diff...');
+        console.log(action.diffSubmit)
+        // console.log(`${action.diffInput}`)
+        // this.setState({value: action.target.value});
+        return {
+          ...state,
+          value : +action.diffSubmit
+        };
+      };
       default:
         return state;
     }
