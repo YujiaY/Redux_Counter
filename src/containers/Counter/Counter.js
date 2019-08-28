@@ -56,9 +56,9 @@ class Counter extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ctr: state.counter,
-    storedResults: state.results,
-    counterValue: state.value,
+    ctr: state.ctrReducer.counter,
+    storedResults: state.resReducer.results,
+    counterValue: state.difReducer.value,
   };
 };
 
@@ -68,7 +68,7 @@ const mapDispatchToProps = dispatch => {
     onDecrementCounter: () => dispatch({type: actionTypes.DECREMENT}),
     onAddCounter: (counterValue) => dispatch({type: actionTypes.ADD, val: counterValue}),
     onSubtractCounter: (counterValue) => dispatch({type: actionTypes.SUBTRACT, val: counterValue}),
-    onStoreResult: () => dispatch({type: actionTypes.STORE_RESULT}),
+    onStoreResult: (result) => dispatch({type: actionTypes.STORE_RESULT, result:result}),
     onDeleteResult: (id) => dispatch({type: actionTypes.DELETE_RESULT, resultElId: id}),
     onInputChange: (inputValue) => dispatch({type: actionTypes.DIFF_CHANGE, diffInput: inputValue }),
     onSubmitInputChange: (submitValue,submitEvent) => dispatch(

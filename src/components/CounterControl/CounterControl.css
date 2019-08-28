@@ -1,8 +1,8 @@
 .CounterControl {
-    width: 150px;
-    padding: 20px;
+    width: 200px;
+    padding: 20px 10px;
     box-sizing: border-box;
-    margin: 16px;
+    margin: 8px;
     border: 1px solid #eee;
     box-shadow: 0 2px 2px #ccc;
     font-weight: bold;
