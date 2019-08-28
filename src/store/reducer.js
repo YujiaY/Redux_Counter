@@ -1,3 +1,5 @@
+import * as actionTypes from './actions';
+
 const initialState = {
   counter: 0,
   results: [],
@@ -5,35 +7,35 @@ const initialState = {
 };
 
 const reducer = (state = initialState, action) => {
-  if (action.type) {
+  // if (action.type) {
     switch (action.type) {
-      case 'INCREMENT':
+      case actionTypes.INCREMENT:
         return {
           ...state,
           counter: state.counter + 1
         };
-      case 'DECREMENT':
+      case actionTypes.DECREMENT:
         return {
           ...state, counter: state.counter - 1
         };
-      case 'ADD':
+      case actionTypes.ADD:
         return {
           ...state, counter: state.counter + action.val
         };
-      case 'SUBTRACT':{
+      case actionTypes.SUBTRACT:{
         console.log('Subtracting...')
         return {
           ...state, counter: state.counter - action.val
         };
       }
-      case 'STORE_RESULT':
+      case actionTypes.STORE_RESULT:
         {
           console.log(`Storing result... ${state.counter}`);
           return {
           ...state,
           results : state.results.concat({id: new Date, value: state.counter})
         };}
-      case 'DELETE_RESULT':
+      case actionTypes.DELETE_RESULT:
         {
           console.log('Deleting result...')
           //One way to remove an item in array.
@@ -46,15 +48,15 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           results : updatedArray
-        }};
-      case 'DIFF_CHANGE': {
+        }}
+      case actionTypes.DIFF_CHANGE: {
         console.log('Input is changing diff...');
         return {
           ...state,
           // value : +action.diffInput
         }
-      };
-      case 'DIFF_SUBMIT':
+      }
+      case actionTypes.DIFF_SUBMIT:
       {
         action.eventSubmit.preventDefault();
         console.log('Submitting diff...');
@@ -65,12 +67,12 @@ const reducer = (state = initialState, action) => {
           ...state,
           value : +action.diffSubmit
         };
-      };
+      }
       default:
         return state;
     }
-  }
-  return state;
+  // }
+  // return state;
 };
 
 export default reducer;

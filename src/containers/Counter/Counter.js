@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
+import * as actionTypes from '../../store/actions'
 
 class Counter extends Component {
     state = {
@@ -63,16 +64,16 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncrementCounter: () => dispatch({type: 'INCREMENT'}),
-    onDecrementCounter: () => dispatch({type: 'DECREMENT'}),
-    onAddCounter: (counterValue) => dispatch({type: 'ADD', val: counterValue}),
-    onSubtractCounter: (counterValue) => dispatch({type: 'SUBTRACT', val: counterValue}),
-    onStoreResult: () => dispatch({type: 'STORE_RESULT'}),
-    onDeleteResult: (id) => dispatch({type: 'DELETE_RESULT', resultElId: id}),
-    onInputChange: (inputValue) => dispatch({type:'DIFF_CHANGE', diffInput: inputValue }),
+    onIncrementCounter: () => dispatch({type: actionTypes.INCREMENT}),
+    onDecrementCounter: () => dispatch({type: actionTypes.DECREMENT}),
+    onAddCounter: (counterValue) => dispatch({type: actionTypes.ADD, val: counterValue}),
+    onSubtractCounter: (counterValue) => dispatch({type: actionTypes.SUBTRACT, val: counterValue}),
+    onStoreResult: () => dispatch({type: actionTypes.STORE_RESULT}),
+    onDeleteResult: (id) => dispatch({type: actionTypes.DELETE_RESULT, resultElId: id}),
+    onInputChange: (inputValue) => dispatch({type: actionTypes.DIFF_CHANGE, diffInput: inputValue }),
     onSubmitInputChange: (submitValue,submitEvent) => dispatch(
       {
-        type:'DIFF_SUBMIT',
+        type: actionTypes.DIFF_SUBMIT,
         diffSubmit: submitValue,
         eventSubmit: submitEvent
       })
