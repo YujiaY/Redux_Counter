@@ -69,7 +69,7 @@ const mapDispatchToProps = dispatch => {
     onDecrementCounter: () => dispatch(actionCreators.decrement()),
     onAddCounter: (counterValue) => dispatch(actionCreators.add(counterValue)),
     onSubtractCounter: (counterValue) => dispatch(actionCreators.subtract(counterValue)),
-    onStoreResult: (result) => dispatch(actionCreators.storeResult(result)),
+    onStoreResult: (result) => dispatch(actionCreators.storeResultAsync(result)),
     onDeleteResult: (id) => dispatch(actionCreators.deleteResult(id)),
     onInputChange: (inputValue) => dispatch(actionCreators.diffChange(inputValue)),
     onSubmitInputChange: (submitValue,submitEvent) => dispatch(

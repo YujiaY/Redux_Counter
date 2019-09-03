@@ -33,11 +33,18 @@ export const subtract = (subValue) => {
   };
 };
 
-export const storeResult = (res) => {
+export const storeResultSync = (res) => {
   return {
     type: STORE_RESULT,
     result: res
   };
+};
+export const storeResultAsync = (res) => {
+  return function (dispatch) {
+    setTimeout( () => {
+      dispatch(storeResultSync(res))
+    }, 2000)
+  }
 };
 
 export const deleteResult = (resElId) => {
