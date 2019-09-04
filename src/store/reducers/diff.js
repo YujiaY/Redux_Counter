@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actions';
+import { updateObject}  from "../utility";
 
 const initialState = {
   value:11,
@@ -7,24 +8,16 @@ const initialState = {
 const diffReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.DIFF_CHANGE: {
-      console.log('Input is changing diff...');
-      return {
-        ...state,
-        // value : +action.diffInput
-      }
-    }
+      console.log('Input is changing diff... But we are not doing anything for it.');
+      return state;
+      // return updateObject(state, {value : +action.diffInput});
+    };
     case actionTypes.DIFF_SUBMIT:
     {
       action.eventSubmit.preventDefault();
       console.log(`Submitting diff... ${action.diffSubmit}`);
-      console.log(action.diffSubmit)
-      // console.log(`${action.diffInput}`)
-      // this.setState({value: action.target.value});
-      return {
-        ...state,
-        value : +action.diffSubmit
-      };
-    }
+      return updateObject(state, { value : +action.diffSubmit});
+    };
     default:
       return state;
   }
